@@ -4,31 +4,31 @@ Este projeto realiza uma análise completa das combinações possíveis de mãos
 
 ## 📁 Estrutura do Projeto
 
+```
 .
 ├── constants/
-│   └── cards\_combinations\_powers.py              # Definições de cartas e forças
+│   └── cards_combinations_powers.py              # Definições de cartas e forças
 ├── data/
-│   ├── hand\_summary.csv                          # Estatísticas por categoria
-│   ├── poker\_hands\_full.csv                      # Todas as 2.598.960 mãos possíveis
+│   ├── hand_summary.csv                          # Estatísticas por categoria
+│   ├── poker_hands_full.csv                      # Todas as 2.598.960 mãos possíveis
 │   └── README.txt
 ├── data-extract/
-│   └── extract\_poker\_hands\_combinations.py       # Gera todas as combinações possíveis
+│   └── extract_poker_hands_combinations.py       # Gera todas as combinações possíveis
 ├── data-load/
-│   ├── base\_load\_csv.py                          # Função auxiliar de leitura
-│   ├── load\_poker\_hands\_combinations.py          # Carrega CSV de combinações
-│   └── load\_poker\_hands\_combinations\_grouped.py  # Agrupa as combinações por categoria
+│   ├── base_load_csv.py                          # Função auxiliar de leitura
+│   ├── load_poker_hands_combinations.py          # Carrega CSV de combinações
+│   └── load_poker_hands_combinations_grouped.py  # Agrupa as combinações por categoria
 ├── data-transform/
-│   └── transform\_group\_poker\_hands.py            # Formata dados para análise
+│   └── transform_group_poker_hands.py            # Formata dados para análise
 ├── data-visualization/
-│   └── visualize\_player\_hand\_synthetic.py        # Gera gráficos da análise da mão do jogador
+│   └── visualize_player_hand_synthetic.py        # Gera gráficos da análise da mão do jogador
 ├── routes/
-│   └── hand\_analysis.py                          # Rota da API que analisa uma mão
+│   └── hand_analysis.py                          # Rota da API que analisa uma mão
 ├── services/
-│   └── service\_hand\_analysis\_synthethic.py       # Lógica da análise da força da mão
+│   └── service_hand_analysis_synthethic.py       # Lógica da análise da força da mão
 ├── main.py                                       # Inicia o servidor FastAPI
 └── requirements.txt                              # Dependências do projeto
-
-````
+```
 
 ---
 
@@ -38,7 +38,7 @@ Este projeto realiza uma análise completa das combinações possíveis de mãos
 
 ```bash
 pip install -r requirements.txt
-````
+```
 
 ### 2. Iniciar o Servidor FastAPI
 
@@ -48,9 +48,9 @@ Execute na raiz do projeto:
 python -m uvicorn main:app --reload
 ```
 
-Acesse o servidor local em:
-[http://127.0.0.1:8000](http://127.0.0.1:8000)
-Documentação interativa em:
+Acesse o servidor local em:  
+[http://127.0.0.1:8000](http://127.0.0.1:8000)  
+Documentação interativa:  
 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
 ---
@@ -59,14 +59,15 @@ Documentação interativa em:
 
 ### `GET /analysis/hand`
 
-Analisa a força relativa de uma mão de poker de 5 cartas, comparando com as 2.598.960 possíveis.
+Analisa a força relativa de uma **categoria de mão de poker** (como "Two Pair", "Full House", etc), comparando-a com todas as 2.598.960 possíveis combinações.
 
 **Parâmetro de query:**
 
-* `player_current_hand` (obrigatório): string com 5 cartas, separadas por vírgulas
-  Ex: `"Two%20Pair"`
+- `player_current_hand` (obrigatório): string com o **nome da categoria** da mão (não são as cartas em si)  
+  Exemplo válido: `"Two Pair"`  
+  (URL-encoded: `Two%20Pair`)
 
-**Exemplo:**
+**Exemplo de chamada:**
 
 ```
 GET /analysis/hand?player_current_hand=Two%20Pair
