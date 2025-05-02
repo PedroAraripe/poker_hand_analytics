@@ -72,11 +72,3 @@ Instale as dependências com:
 ```bash
 pip install -r requirements.txt
 ```
-
-## 📄 Licença
-
-Este projeto é livre para uso educacional e não possui restrições comerciais explícitas. Sinta-se à vontade para modificar e compartilhar!
-
----
-
-Se quiser, posso gerar também um `requirements.txt` para facilitar a instalação dos pacotes. Deseja isso?
