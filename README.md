@@ -7,11 +7,11 @@ Este projeto realiza uma análise completa das combinações possíveis de mãos
 ```
 .
 ├── constants.py                   # Constantes auxiliares (naipes, valores, categorias)
-├── generate_poker_combinatios.py # Gera todas as combinações possíveis de mãos de poker (52C5)
-├── extract_poker_categories.py   # Classifica as mãos geradas em categorias (Flush, Full House etc.) e calcula distribuições
-├── hand_summary.csv              # Resumo final das distribuições geradas por categoria
-├── poker.py                      # Script interativo para comparar sua mão com todas as outras
-├── poker_hands_full.csv          # Arquivo com todas as 2.598.960 mãos possíveis e suas respectivas categorias
+├── generate_poker_combinatios.py  # Gera todas as combinações possíveis de mãos de poker (52C5)
+├── extract_poker_categories.py    # Classifica as mãos geradas em categorias (Flush, Full House etc.) e calcula distribuições
+├── hand_summary.csv               # Resumo final das distribuições geradas por categoria
+├── poker.py                       # Script interativo para comparar sua mão com todas as outras
+├── poker_hands_full.csv           # Arquivo com todas as 2.598.960 mãos possíveis e suas respectivas categorias
 ```
 
 ## 🚀 Como Utilizar
