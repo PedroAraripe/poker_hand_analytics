@@ -1,86 +1,158 @@
-Claro! Aqui está um exemplo de README bem estruturado para seu projeto de **análise de dados de mãos de poker**:
-
----
-
+```markdown
 # 🃏 Poker Hand Analysis
 
-Este projeto realiza uma análise completa das combinações possíveis de mãos de poker com 5 cartas, categorizando-as e permitindo comparar qualquer mão com o universo de combinações possíveis.
+Este projeto realiza uma análise completa das combinações possíveis de mãos de poker com 5 cartas, categorizando-as e permitindo comparar qualquer mão com o universo de combinações possíveis. Além disso, você pode enviar uma mão via API e receber insights estatísticos sobre sua força relativa.
 
 ## 📁 Estrutura do Projeto
 
 ```
+
 .
-├── constants.py                   # Constantes auxiliares (naipes, valores, categorias)
-├── generate_poker_combinatios.py # Gera todas as combinações possíveis de mãos de poker (52C5)
-├── extract_poker_categories.py   # Classifica as mãos geradas em categorias (Flush, Full House etc.) e calcula distribuições
-├── hand_summary.csv              # Resumo final das distribuições geradas por categoria
-├── poker.py                      # Script interativo para comparar sua mão com todas as outras
-├── poker_hands_full.csv          # Arquivo com todas as 2.598.960 mãos possíveis e suas respectivas categorias
-```
+├── constants/
+│   └── cards\_combinations\_powers.py              # Definições de cartas e forças
+├── data/
+│   ├── hand\_summary.csv                          # Estatísticas por categoria
+│   ├── poker\_hands\_full.csv                      # Todas as 2.598.960 mãos possíveis
+│   └── README.txt
+├── data-extract/
+│   └── extract\_poker\_hands\_combinations.py       # Gera todas as combinações possíveis
+├── data-load/
+│   ├── base\_load\_csv.py                          # Função auxiliar de leitura
+│   ├── load\_poker\_hands\_combinations.py          # Carrega CSV de combinações
+│   └── load\_poker\_hands\_combinations\_grouped.py  # Agrupa as combinações por categoria
+├── data-transform/
+│   └── transform\_group\_poker\_hands.py            # Formata dados para análise
+├── data-visualization/
+│   └── visualize\_player\_hand\_synthetic.py        # Gera gráficos da análise da mão do jogador
+├── routes/
+│   └── hand\_analysis.py                          # Rota da API que analisa uma mão
+├── services/
+│   └── service\_hand\_analysis\_synthethic.py       # Lógica da análise da força da mão
+├── main.py                                       # Inicia o servidor FastAPI
+└── requirements.txt                              # Dependências do projeto
+
+````
+
+---
 
 ## 🚀 Como Utilizar
 
-1. **Gerar todas as combinações possíveis de mãos:**
+### 1. Instalar Dependências
 
-   ```bash
-   python generate_poker_combinatios.py
-   ```
+```bash
+pip install -r requirements.txt
+````
 
-   Isso criará o arquivo `poker_hands_full.csv`, com todas as 2.598.960 mãos de poker possíveis.
+### 2. Iniciar o Servidor FastAPI
 
-2. **Classificar as mãos e gerar resumo estatístico:**
+Execute na raiz do projeto:
 
-   ```bash
-   python extract_poker_categories.py
-   ```
+```bash
+python -m uvicorn main:app --reload
+```
 
-   Esse script classifica as mãos (Ex: Full House, Flush etc.) e gera o arquivo `hand_summary.csv` com a contagem e porcentagem de cada categoria.
+Acesse o servidor local em:
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
+Documentação interativa em:
+[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-3. **Comparar sua mão com o universo de combinações:**
+---
 
-   ```bash
-   python poker.py
-   ```
+## 🌐 Endpoint Disponível
 
-   O script irá:
+### `GET /analysis/hand`
 
-   * Identificar a categoria da sua mão
-   * Mostrar quantas mãos são mais fortes, mais fracas ou da mesma categoria
-   * Exibir gráficos de pizza e barras com a distribuição
+Analisa a força relativa de uma mão de poker de 5 cartas, comparando com as 2.598.960 possíveis.
+
+**Parâmetro de query:**
+
+* `player_current_hand` (obrigatório): string com 5 cartas, separadas por vírgulas
+  Ex: `"Two%20Pair"`
+
+**Exemplo:**
+
+```
+GET /analysis/hand?player_current_hand=Two%20Pair
+```
+
+**Resposta esperada:**
+
+```json
+{
+  "player_current_hand": "Two Pair",
+  "hands_weaker_count": [...],
+  "hands_stronger_count": [...],
+  "hands_same_category_count": [...],
+  ...
+}
+```
+
+---
+
+## ⚙️ Scripts Auxiliares
+
+### 🔄 Geração e Classificação
+
+```bash
+python data-extract/extract_poker_hands_combinations.py
+```
+
+### 📥 Carregamento de Dados
+
+```bash
+python data-load/load_poker_hands_combinations.py
+python data-load/load_poker_hands_combinations_grouped.py
+```
+
+### 🧹 Transformação para Análise
+
+```bash
+python data-transform/transform_group_poker_hands.py
+```
+
+### 📊 Visualização
+
+```bash
+python data-visualization/visualize_player_hand_synthetic.py
+```
+
+Gera gráficos de pizza e barras com as forças comparativas da sua mão em relação às outras possíveis.
+
+---
 
 ## 📊 Exemplos de Insights
 
-* Você pode descobrir que mãos do tipo "One Pair" representam cerca de 42% de todas as combinações possíveis.
-* "Royal Flush" ocorre em apenas 0.00015% das vezes.
-* Veja graficamente contra quais categorias sua mão atual é mais fraca ou mais forte.
+* Mãos "One Pair" representam cerca de 42% de todas as combinações possíveis.
+* "Royal Flush" é extremamente rara (0.00015%).
+* Descubra graficamente contra quais categorias sua mão é mais fraca ou mais forte.
 
-## 🧠 Objetivo
+---
 
-Esse projeto é ideal para quem deseja entender:
+## 🎯 Objetivo
+
+Este projeto é ideal para quem deseja entender:
 
 * A distribuição estatística das mãos de poker
 * Análise combinatória aplicada a jogos de cartas
-* Como comparar uma mão específica com o universo completo do jogo
+* Comparação de uma mão específica com o universo completo de mãos
 
-## 📝 Requisitos
+---
 
-* Python 3.7+
-* Bibliotecas:
+## ✅ Requisitos
 
-  * `pandas`
-  * `matplotlib`
-  * `seaborn`
+* Python 3.10+
+* Bibliotecas utilizadas:
 
-Instale as dependências com:
+```txt
+pandas
+matplotlib
+seaborn
+fastapi
+uvicorn
+```
+
+Instale tudo com:
 
 ```bash
 pip install -r requirements.txt
 ```
-
-## 📄 Licença
-
-Este projeto é livre para uso educacional e não possui restrições comerciais explícitas. Sinta-se à vontade para modificar e compartilhar!
-
----
-
-Se quiser, posso gerar também um `requirements.txt` para facilitar a instalação dos pacotes. Deseja isso?
