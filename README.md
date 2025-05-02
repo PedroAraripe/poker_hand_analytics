@@ -1,5 +1,3 @@
-Claro! Aqui está um exemplo de README bem estruturado para seu projeto de **análise de dados de mãos de poker**:
-
 ---
 
 # 🃏 Poker Hand Analysis
