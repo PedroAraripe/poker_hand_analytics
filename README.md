@@ -1,5 +1,3 @@
----
-
 # 🃏 Poker Hand Analysis
 
 Este projeto realiza uma análise completa das combinações possíveis de mãos de poker com 5 cartas, categorizando-as e permitindo comparar qualquer mão com o universo de combinações possíveis.
