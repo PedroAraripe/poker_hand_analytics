@@ -87,6 +87,14 @@ GET /analysis/hand?player_current_hand=Two%20Pair
 
 ---
 
+## 🌐 Deploy
+
+O projeto foi deployado na Vercel e pode ser acessado através do seguinte link:
+
+[https://poker-hand-analytics-git-main-pedroararipes-projects.vercel.app/](https://poker-hand-analytics-git-main-pedroararipes-projects.vercel.app/)
+
+---
+
 ## ⚙️ Scripts Auxiliares
 
 ### 🔄 Geração e Classificação
