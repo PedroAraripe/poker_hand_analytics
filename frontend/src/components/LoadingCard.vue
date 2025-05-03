@@ -1,25 +1,38 @@
 <template>
-  <div class="card-container">
-    <div class="card">
-      <!-- Rainha de Copas -->
-      <div class="face front-queen">
-        <div class="corner">Q<br />♥</div>
-        <div class="suit">♥</div>
-        <div class="corner" style="align-self: flex-end; transform: rotate(180deg)">Q<br />♥</div>
+  <div class="wrapper-loading-card">
+    <div class="card-container">
+      <div class="card">
+        <!-- Ás de Espadas -->
+        <div class="face front-ace">
+          <div class="corner">A<br />♠</div>
+          <div class="suit">♠</div>
+          <div class="corner" style="align-self: flex-end; transform: rotate(180deg)">A<br />♠</div>
+        </div>
+        <!-- Verso -->
+        <div class="face back"></div>
       </div>
-      <!-- Ás de Espadas -->
-      <div class="face front-ace">
-        <div class="corner">A<br />♠</div>
-        <div class="suit">♠</div>
-        <div class="corner" style="align-self: flex-end; transform: rotate(180deg)">A<br />♠</div>
-      </div>
-      <!-- Verso -->
-      <div class="face back"></div>
     </div>
+
+    <!-- <div style="margin-top: 1rem">Carregando estatísticas...</div> -->
   </div>
 </template>
 
 <style lang="scss" scoped>
+.wrapper-loading-card {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .card-container {
   &,
   & * {
@@ -66,7 +79,6 @@ body {
   border: 2px solid #000;
 }
 
-.front-queen,
 .front-ace {
   background: white;
   flex-direction: column;
@@ -102,10 +114,6 @@ body {
 /* Controla a troca de faces enquanto o verso está visível */
 .card-container {
   animation: spin 2s linear infinite;
-}
-
-.card-container:hover .front-queen {
-  opacity: 0;
 }
 
 .card-container:hover .front-ace {
