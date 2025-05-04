@@ -12,9 +12,13 @@ def analyze_hand(player_current_hand: str):
   hands_same_category = hand_summary[hand_summary["hand power"] == player_hand_category_level];
 
   # Resumo de força da mão
-  hands_weaker_count = hands_weaker["percentage"].sum().round(2)
-  hands_stronger_count = hands_stronger["percentage"].sum().round(2)
-  hands_same_category_count = hands_same_category["percentage"].sum().round(2)
+  hands_weaker_count = hands_weaker["percentage"].sum().round(5)
+  hands_stronger_count = hands_stronger["percentage"].sum().round(5)
+  print(hands_stronger["hand"].sum())
+  hands_same_category_count = hands_same_category["percentage"].sum().round(5)
+  hands_weaker_total_count = hands_weaker["hand"].sum().round(5)
+  hands_stronger_total_count = hands_stronger["hand"].sum()
+  hands_same_category_total_count = hands_same_category["hand"].sum().round(5)
 
   hand_weaker_summary_sorted = hands_weaker.sort_values('hand power')
   hand_stronger_summary_sorted = hands_stronger.sort_values('hand power')
@@ -24,6 +28,9 @@ def analyze_hand(player_current_hand: str):
       "player_current_hand": player_current_hand,
       "hands_weaker_count": hands_weaker_count,
       "hands_stronger_count": hands_stronger_count,
+      "hands_same_category_total_count": int(hands_same_category_total_count),
+      "hands_weaker_total_count": int(hands_weaker_total_count),
+      "hands_stronger_total_count": int(hands_stronger_total_count),
       "hands_same_category_count": hands_same_category_count,
       "hand_weaker_summary_sorted": hand_weaker_summary_sorted.to_dict(orient="records"),
       "hand_stronger_summary_sorted": hand_stronger_summary_sorted.to_dict(orient="records"),

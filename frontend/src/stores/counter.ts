@@ -10,6 +10,9 @@ export interface IPlayerHandStatus {
   hands_same_category_count: number
   hands_stronger_count: number
   hands_weaker_count: number
+  hands_same_category_total_count: number
+  hands_stronger_total_count: number
+  hands_weaker_total_count: number
 }
 
 export const usePokerHandStatusStore = defineStore('poker-hand-status-store', () => {
