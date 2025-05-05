@@ -36,7 +36,7 @@
 .card-container {
   &,
   & * {
-    font-weight: bold !important;
+    font-weight: bold;
   }
 }
 

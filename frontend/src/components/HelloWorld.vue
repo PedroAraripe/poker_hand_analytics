@@ -53,7 +53,6 @@ const chartResume = computed(() => {
     data,
     index: 'name',
     category: 'total',
-    colors: ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'],
   }
 })
 
@@ -127,7 +126,7 @@ watch(
 )
 </script>
 
-<style scoped>
+<style>
 h1 {
   font-weight: 500;
   font-size: 2.6rem;
@@ -159,5 +158,22 @@ h3 {
 .v-enter-from,
 .v-leave-to {
   opacity: 0;
+}
+
+@layer base {
+  :root {
+    /* ... */
+    --vis-tooltip-background-color: none !important;
+    --vis-tooltip-border-color: none !important;
+    --vis-tooltip-text-color: none !important;
+    --vis-tooltip-shadow-color: none !important;
+    --vis-tooltip-backdrop-filter: none !important;
+    --vis-tooltip-padding: none !important;
+
+    --vis-primary-color: var(--primary);
+    /* change to any hsl value you want */
+    --vis-secondary-color: 160 81% 40%;
+    --vis-text-color: var(--muted-foreground);
+  }
 }
 </style>
